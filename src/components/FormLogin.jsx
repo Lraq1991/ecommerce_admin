@@ -16,7 +16,7 @@ function FormLogin() {
     ev.preventDefault();
     const { data: user } = await axios({
       method: "POST",
-      url: process.env.REACT_APP_API_URL + "/users/login",
+      url: process.env.REACT_APP_API_URL + "/users/adminlogin",
       data: {
         email: email,
         password: password,
