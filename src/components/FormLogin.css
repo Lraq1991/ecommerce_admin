@@ -1,0 +1,40 @@
+.form-login {
+  font-family: "Times New Roman", Times, serif;
+  margin: 100px auto;
+  max-width: 320px;
+  font-size: 1.4rem;
+}
+
+.button-form-login {
+  border: #0a4136;
+  background-color: #0a4136;
+}
+
+.button-form-login:hover {
+  border: #59821e;
+  background-color: #59821e;
+}
+
+.button-form-login:active:focus {
+  border: #59821e;
+  background-color: #59821e;
+  border-color: #59821e;
+  box-shadow: 0 0 0 0.25rem rgb(89 130 30 / 25%);
+}
+
+.input-form-login {
+  border-radius: 0;
+}
+
+.input-form-login:focus {
+  border-color: #59821e;
+  box-shadow: 0 0 0 0.25rem rgb(89 130 30 / 25%);
+}
+
+.form-login-link-to-register {
+  color: #0a4136;
+}
+
+.form-login-link-to-register:hover {
+  color: #59821e;
+}
