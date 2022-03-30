@@ -1,0 +1,11 @@
+.navbar-brand {
+  cursor: pointer;
+}
+.sb-hamburg {
+  width: 50px;
+  height: 3px;
+}
+
+.sb-hamburg:after {
+  margin-top: 10px;
+}
