@@ -1,7 +1,29 @@
-import React from "react";
+import "./Sidebar.css";
 
 function Sidebar() {
-  return <div className="bg-dark h-100 text-light">Sidebar</div>;
+  return (
+    <div className="bg-dark h-100 text-secondary sidebar p-4">
+      <div>
+        <div className="py-2">
+          <span className="sb-section">Core</span>
+          <div>
+            <span className="sb-tag">Dashboard</span>
+          </div>
+        </div>
+        <div className="py-2">
+          <span className="sb-section">Interface</span>
+          <div className="sb-tag">Layout</div>
+          <div className="sb-tag">Pages</div>
+        </div>
+        <div className="py-2">
+          <span className="sb-section">Addons</span>
+          <div className="sb-tag">Charts</div>
+          <div className="sb-tag">Tables</div>
+        </div>
+      </div>
+      <div>footer</div>
+    </div>
+  );
 }
 
 export default Sidebar;

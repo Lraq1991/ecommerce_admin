@@ -1,0 +1,16 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sb-section {
+  font-size: larger;
+  font-weight: bolder;
+}
+.sb-tag {
+  font-size: x-large;
+  cursor: pointer;
+}
+.sb-tag:hover {
+  color: #f8f9fa;
+}

@@ -1,11 +1,21 @@
-.navbar-brand {
+.sb-btn {
   cursor: pointer;
 }
-.sb-hamburg {
-  width: 50px;
-  height: 3px;
+.sb-hamburg,
+.sb-hamburg:after,
+.sb-hamburg:before {
+  display: block;
+  background-color: #fff;
+  position: absolute;
+  height: 2px;
+  width: 30px;
 }
 
 .sb-hamburg:after {
+  content: "";
   margin-top: 10px;
+}
+.sb-hamburg:before {
+  content: "";
+  margin-top: -10px;
 }

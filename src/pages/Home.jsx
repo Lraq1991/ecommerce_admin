@@ -7,12 +7,11 @@ function Home() {
   return (
     <div className="container home-container p-0 m-0 mw-100">
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <span className="navbar-brand ps-3" onClick={() => setShow((prev) => !prev)}>
-          <div className="sb-hamburg bg-light"></div>
-        </span>
-        <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
-          <i className="fas fa-bars"></i>
-        </button>
+        <div className="pt-4 ps-4 sb-btn" onClick={() => setShow((prev) => !prev)}>
+          <span className="navbar-brand ps-3">
+            <div className="sb-hamburg"></div>
+          </span>
+        </div>
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
             <input
@@ -57,7 +56,7 @@ function Home() {
       </nav>
       <div className="row">
         {show && (
-          <div className="col">
+          <div className="col-lg-2 col-md-3 col-sm-6 col-xs-6">
             <Sidebar />
           </div>
         )}
