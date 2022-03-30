@@ -3,15 +3,10 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 
 function Home() {
-  const [showSidebar, setShowSidebar] = useState(null);
-
   return (
     <div className="container home-container p-0 m-0 mw-100">
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <span
-          className="navbar-brand ps-3"
-          onClick={() => setShowSidebar((prev) => !prev)}
-        >
+        <span className="navbar-brand ps-3">
           <div className="sb-hamburg bg-light"></div>
         </span>
         <button
@@ -70,11 +65,10 @@ function Home() {
         </ul>
       </nav>
       <div className="row">
-        {showSidebar && (
-          <div className="col">
-            <Sidebar />
-          </div>
-        )}
+        <div className="col">
+          <Sidebar />
+        </div>
+
         <div className="col">
           <div id="layoutSidenav">
             <div id="layoutSidenav_content">
