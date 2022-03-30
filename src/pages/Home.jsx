@@ -3,16 +3,14 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 
 function Home() {
+  const [show, setShow] = useState(null);
   return (
     <div className="container home-container p-0 m-0 mw-100">
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <span className="navbar-brand ps-3">
+        <span className="navbar-brand ps-3" onClick={() => setShow((prev) => !prev)}>
           <div className="sb-hamburg bg-light"></div>
         </span>
-        <button
-          className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-          id="sidebarToggle"
-        >
+        <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
           <i className="fas fa-bars"></i>
         </button>
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
@@ -24,11 +22,7 @@ function Home() {
               aria-label="Search for..."
               aria-describedby="btnNavbarSearch"
             />
-            <button
-              className="btn btn-primary"
-              id="btnNavbarSearch"
-              type="button"
-            >
+            <button className="btn btn-primary" id="btnNavbarSearch" type="button">
               <i className="fas fa-search"></i>
             </button>
           </div>
@@ -44,10 +38,7 @@ function Home() {
             >
               <i className="fas fa-user fa-fw"></i>
             </span>
-            <ul
-              className="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdown"
-            >
+            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li>
                 <span className="dropdown-item">Settings</span>
               </li>
@@ -65,9 +56,11 @@ function Home() {
         </ul>
       </nav>
       <div className="row">
-        <div className="col">
-          <Sidebar />
-        </div>
+        {show && (
+          <div className="col">
+            <Sidebar />
+          </div>
+        )}
 
         <div className="col">
           <div id="layoutSidenav">
@@ -83,9 +76,7 @@ function Home() {
                       <div className="card bg-primary text-white mb-4">
                         <div className="card-body">Primary Card</div>
                         <div className="card-footer d-flex align-items-center justify-content-between">
-                          <span className="small text-white stretched-link">
-                            View Details
-                          </span>
+                          <span className="small text-white stretched-link">View Details</span>
                           <div className="small text-white">
                             <i className="fas fa-angle-right"></i>
                           </div>
@@ -96,9 +87,7 @@ function Home() {
                       <div className="card bg-warning text-white mb-4">
                         <div className="card-body">Warning Card</div>
                         <div className="card-footer d-flex align-items-center justify-content-between">
-                          <span className="small text-white stretched-link">
-                            View Details
-                          </span>
+                          <span className="small text-white stretched-link">View Details</span>
                           <div className="small text-white">
                             <i className="fas fa-angle-right"></i>
                           </div>
@@ -109,9 +98,7 @@ function Home() {
                       <div className="card bg-success text-white mb-4">
                         <div className="card-body">Success Card</div>
                         <div className="card-footer d-flex align-items-center justify-content-between">
-                          <span className="small text-white stretched-link">
-                            View Details
-                          </span>
+                          <span className="small text-white stretched-link">View Details</span>
                           <div className="small text-white">
                             <i className="fas fa-angle-right"></i>
                           </div>
@@ -122,9 +109,7 @@ function Home() {
                       <div className="card bg-danger text-white mb-4">
                         <div className="card-body">Danger Card</div>
                         <div className="card-footer d-flex align-items-center justify-content-between">
-                          <span className="small text-white stretched-link">
-                            View Details
-                          </span>
+                          <span className="small text-white stretched-link">View Details</span>
                           <div className="small text-white">
                             <i className="fas fa-angle-right"></i>
                           </div>
@@ -140,11 +125,7 @@ function Home() {
                           Area Chart Example
                         </div>
                         <div className="card-body">
-                          <canvas
-                            id="myAreaChart"
-                            width="100%"
-                            height="40"
-                          ></canvas>
+                          <canvas id="myAreaChart" width="100%" height="40"></canvas>
                         </div>
                       </div>
                     </div>
@@ -155,11 +136,7 @@ function Home() {
                           Bar Chart Example
                         </div>
                         <div className="card-body">
-                          <canvas
-                            id="myBarChart"
-                            width="100%"
-                            height="40"
-                          ></canvas>
+                          <canvas id="myBarChart" width="100%" height="40"></canvas>
                         </div>
                       </div>
                     </div>
@@ -169,9 +146,7 @@ function Home() {
               <footer className="py-4 bg-light mt-auto">
                 <div className="container-fluid px-4">
                   <div className="d-flex align-items-center justify-content-between small">
-                    <div className="text-muted">
-                      Copyright &copy; Your Website 2022
-                    </div>
+                    <div className="text-muted">Copyright &copy; Your Website 2022</div>
                     <div>
                       <span>Privacy Policy</span>
                       &middot;
