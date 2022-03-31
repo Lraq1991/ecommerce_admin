@@ -21,7 +21,9 @@ function Sidebar() {
         <div className="py-2">
           <span className="sb-section">Addons</span>
           <div className="sb-tag">Charts</div>
-          <div className="sb-tag">Tables</div>
+          <div className="sb-tag">
+            <Link to={"/tables"}>Tables</Link>
+          </div>
         </div>
       </div>
       <div>footer</div>
