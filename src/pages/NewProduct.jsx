@@ -36,7 +36,6 @@ function NewProduct() {
   };
   const handleClick = async () => {
     try {
-      console.log(formData);
       await axios({
         method: "POST",
         url: `${process.env.REACT_APP_API_URL}/products`,

@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import ProductModal from "../components/ProductModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
 
 function Products() {
   const [products, setProducts] = useState(null);
   const [product, setProduct] = useState(null);
   const [show, setShow] = useState(false);
+  const user = useSelector((state) => state.user);
 
   const notify = () =>
     toast.success("Succesfully updated!", {
@@ -32,6 +34,15 @@ function Products() {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
 
     setProducts(data);
+  };
+
+  const handleRemove = async (item) => {
+    await axios({
+      method: "DELETE",
+      url: `${process.env.REACT_APP_API_URL}/products/${item.slug}`,
+      headers: { Authorization: `Bearer ${user.token}` },
+    });
+    getProducts();
   };
 
   useEffect(() => {
@@ -73,7 +84,7 @@ function Products() {
                   </Button>{" "}
                 </td>
                 <td>
-                  <Button variant="danger" onClick={() => handleShow(item)}>
+                  <Button variant="danger" onClick={() => handleRemove(item)}>
                     Remove
                   </Button>{" "}
                 </td>
