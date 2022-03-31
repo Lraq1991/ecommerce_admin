@@ -6,7 +6,8 @@ import { Route, Routes } from "react-router";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import Products from "./pages/Products";
 
 function App() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="tables" element={<Tables />} />
+          <Route path="products" element={<Products />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
