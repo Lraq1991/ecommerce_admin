@@ -104,14 +104,6 @@ function ProductModal({ show, handleClose, notify, product }) {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="status">
-              <Form.Label column sm="2">
-                Status
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control type="text" placeholder="get status!!" />
-              </Col>
-            </Form.Group>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close

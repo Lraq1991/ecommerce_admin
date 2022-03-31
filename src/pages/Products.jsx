@@ -4,11 +4,13 @@ import { Button } from "react-bootstrap";
 import ProductModal from "../components/ProductModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 function Products() {
   const [products, setProducts] = useState(null);
   const [product, setProduct] = useState(null);
   const [show, setShow] = useState(false);
+
   const notify = () =>
     toast.success("Succesfully updated!", {
       position: "top-right",
@@ -37,6 +39,11 @@ function Products() {
   }, []);
   return (
     <div>
+      <div className="btn btn-success my-2">
+        <Link to={"/create-product"} className="text-decoration-none text-white">
+          New Product
+        </Link>
+      </div>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -45,8 +52,8 @@ function Products() {
             <th scope="col">Description</th>
             <th scope="col">Price(usd)</th>
             <th scope="col">Stock</th>
-            <th scope="col">Status</th>
             <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
           </tr>
         </thead>
         <tbody>
@@ -60,10 +67,14 @@ function Products() {
                 <td>{item.description}</td>
                 <td>{item.price}</td>
                 <td>{item.stock}</td>
-                <td>get status</td>
                 <td>
                   <Button variant="secondary" onClick={() => handleShow(item)}>
                     Edit
+                  </Button>{" "}
+                </td>
+                <td>
+                  <Button variant="danger" onClick={() => handleShow(item)}>
+                    Remove
                   </Button>{" "}
                 </td>
               </tr>

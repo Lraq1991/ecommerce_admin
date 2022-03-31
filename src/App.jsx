@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
+import NewProduct from "./pages/NewProduct";
 
 function App() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="tables" element={<Tables />} />
           <Route path="products" element={<Products />} />
+          <Route path="create-product" element={<NewProduct />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
