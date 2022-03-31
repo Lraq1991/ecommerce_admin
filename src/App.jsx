@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -20,7 +21,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path="dashboard" element={<Dashboard />} />
+        </Route>
         <Route path="/tables" element={<Tables />} />
         <Route path="/login" element={<Login />} />
       </Routes>

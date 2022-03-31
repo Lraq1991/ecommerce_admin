@@ -1,4 +1,5 @@
 import "./Sidebar.css";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -7,7 +8,9 @@ function Sidebar() {
         <div className="py-2">
           <span className="sb-section">Core</span>
           <div>
-            <span className="sb-tag">Dashboard</span>
+            <span className="sb-tag">
+              <Link to={"/dashboard"}>Dashboard</Link>
+            </span>
           </div>
         </div>
         <div className="py-2">
