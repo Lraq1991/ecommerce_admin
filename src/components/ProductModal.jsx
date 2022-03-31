@@ -1,19 +1,7 @@
 import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-function ProductModal({ show, handleClose, product }) {
-  const notify = () =>
-    toast.success("Wow so easy !", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+function ProductModal({ show, handleClose, notify, product }) {
   return (
     <>
       {product && (
@@ -79,17 +67,6 @@ function ProductModal({ show, handleClose, product }) {
               </Button>
             </Modal.Footer>
           </Form>
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
         </Modal>
       )}
     </>

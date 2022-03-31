@@ -2,11 +2,23 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import ProductModal from "../components/ProductModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Products() {
   const [products, setProducts] = useState(null);
   const [product, setProduct] = useState(null);
   const [show, setShow] = useState(false);
+  const notify = () =>
+    toast.success("Wow so easy !", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const handleClose = () => setShow(false);
   const handleShow = (item) => {
@@ -58,7 +70,18 @@ function Products() {
             ))}
         </tbody>
       </table>
-      <ProductModal show={show} handleClose={handleClose} product={product} />
+      <ProductModal show={show} handleClose={handleClose} notify={notify} product={product} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
