@@ -10,7 +10,7 @@ function Products() {
   const [product, setProduct] = useState(null);
   const [show, setShow] = useState(false);
   const notify = () =>
-    toast.success("Wow so easy !", {
+    toast.success("Succesfully updated!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -27,7 +27,7 @@ function Products() {
   };
 
   const getProducts = async () => {
-    const { data } = await axios.get("http://localhost:8000/products");
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
 
     setProducts(data);
   };

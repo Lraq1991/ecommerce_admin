@@ -1,7 +1,41 @@
 import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function ProductModal({ show, handleClose, notify, product }) {
+  const user = useSelector((state) => state.user);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    stock: "",
+  });
+  const handleChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    setFormData({ ...formData, [key]: value });
+  };
+  const handleClick = async () => {
+    try {
+      console.log(formData);
+      await axios({
+        method: "PATCH",
+        url: `${process.env.REACT_APP_API_URL}/products/${product.slug}`,
+        headers: { Authorization: `Bearer ${user.token}` },
+        data: {
+          name: formData.name,
+          description: formData.description,
+          price: formData.price,
+          stock: formData.stock,
+        },
+      });
+      notify();
+      handleClose();
+    } catch (err) {
+      window.alert("Cant not make the update, try again later!");
+    }
+  };
   return (
     <>
       {product && (
@@ -15,7 +49,12 @@ function ProductModal({ show, handleClose, notify, product }) {
                 Name
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" placeholder={product.name} />
+                <Form.Control
+                  name="name"
+                  type="text"
+                  placeholder={product.name}
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="description">
@@ -23,7 +62,12 @@ function ProductModal({ show, handleClose, notify, product }) {
                 Description
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" placeholder={`${product.description.slice(0, 20)}...`} />
+                <Form.Control
+                  type="text"
+                  name="description"
+                  placeholder={`${product.description.slice(0, 20)}...`}
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="picture">
@@ -39,7 +83,12 @@ function ProductModal({ show, handleClose, notify, product }) {
                 Price
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="number" placeholder={product.price} />
+                <Form.Control
+                  name="price"
+                  type="number"
+                  placeholder={product.price}
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="stock">
@@ -47,7 +96,12 @@ function ProductModal({ show, handleClose, notify, product }) {
                 Stock
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="number" placeholder={product.stock} />
+                <Form.Control
+                  name="stock"
+                  type="number"
+                  placeholder={product.stock}
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="status">
@@ -62,7 +116,7 @@ function ProductModal({ show, handleClose, notify, product }) {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={notify}>
+              <Button variant="primary" onClick={handleClick}>
                 Save Changes
               </Button>
             </Modal.Footer>
