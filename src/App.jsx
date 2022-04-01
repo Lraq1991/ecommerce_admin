@@ -13,6 +13,7 @@ import UsersTable from "./pages/UsersTable";
 import CreateUser from "./pages/CreateUser";
 import Categories from "./pages/Categories";
 import CreateCategory from "./pages/CreateCategory";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

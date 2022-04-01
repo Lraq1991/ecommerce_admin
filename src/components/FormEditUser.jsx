@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { format as formatDate } from "date-fns";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router";
 
 function FormEditUser({ admin, showForm, setShowForm, id }) {
   const [showConfirmEdit, setShowConfirmEdit] = useState(false);
@@ -15,6 +16,7 @@ function FormEditUser({ admin, showForm, setShowForm, id }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [city, setCity] = useState("");
   const [createdAt, setCreatedAt] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     async function getUser() {
       try {
@@ -54,7 +56,6 @@ function FormEditUser({ admin, showForm, setShowForm, id }) {
           createdAt: createdAt,
         },
       });
-      console.log(status);
       setShowConfirmEdit(!showConfirmEdit);
       if (status === 206) {
         toast.success(data.message, {
@@ -67,6 +68,7 @@ function FormEditUser({ admin, showForm, setShowForm, id }) {
           progress: undefined,
         });
       }
+      setShowForm(!showForm);
     } catch (error) {
       console.log(error);
     }
@@ -191,7 +193,6 @@ function FormEditUser({ admin, showForm, setShowForm, id }) {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer />
     </>
   );
 }

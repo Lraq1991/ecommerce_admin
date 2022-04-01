@@ -46,6 +46,7 @@ function CreateUser() {
           progress: undefined,
         });
       }
+      navigate("/users");
     } catch (error) {
       console.log(error);
     }
@@ -186,7 +187,6 @@ function CreateUser() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer />
     </>
   );
 }
