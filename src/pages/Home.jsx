@@ -56,12 +56,12 @@ function Home() {
       </nav>
       <div className="row">
         {show && (
-          <div className="col-lg-2 col-md-3 col-sm-6 col-xs-6">
+          <div className="col-lg-2 col-md-3 col-sm-6 col-xs-6 pe-0">
             <Sidebar />
           </div>
         )}
 
-        <div className="col">
+        <div className="col p-0">
           <div id="layoutSidenav">
             <div id="layoutSidenav_content">
               <main className="px-4">

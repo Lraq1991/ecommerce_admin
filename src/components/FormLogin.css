@@ -6,6 +6,7 @@
 }
 
 .button-form-login {
+  width: 100%;
   border: #0a4136;
   background-color: #0a4136;
 }
@@ -16,6 +17,13 @@
 }
 
 .button-form-login:active:focus {
+  border: #59821e;
+  background-color: #59821e;
+  border-color: #59821e;
+  box-shadow: 0 0 0 0.25rem rgb(89 130 30 / 25%);
+}
+
+.button-form-login:focus {
   border: #59821e;
   background-color: #59821e;
   border-color: #59821e;

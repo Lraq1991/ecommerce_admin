@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
-    <div className="bg-dark h-100 text-secondary sidebar p-4">
+    <div className="bg-dark text-secondary sidebar p-3">
       <div>
         <div className="py-2">
           <span className="sb-section">Core</span>
@@ -24,6 +24,9 @@ function Sidebar() {
           <div className="sb-tag">Charts</div>
           <div className="sb-tag">
             <Link to={"/tables"}>Tables</Link>
+          </div>
+          <div className="sb-tag">
+            <Link to={"/users"}>Users</Link>
           </div>
         </div>
       </div>

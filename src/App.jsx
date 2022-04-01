@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import NewProduct from "./pages/NewProduct";
+import UsersTable from "./pages/UsersTable";
+import CreateUser from "./pages/CreateUser";
 
 function App() {
   const navigate = useNavigate();
@@ -28,6 +30,8 @@ function App() {
           <Route path="tables" element={<Tables />} />
           <Route path="products" element={<Products />} />
           <Route path="create-product" element={<NewProduct />} />
+          <Route path="users" element={<UsersTable />} />
+          <Route path="create-user" element={<CreateUser />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

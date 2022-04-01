@@ -55,14 +55,10 @@ function FormLogin() {
           required
         />
       </Form.Group>
-      <div className="d-flex justify-content-between align-items-center">
-        <Button className="button-form-login rounded-pill btn-lg" variant="primary" type="submit">
-          Submit
-        </Button>
-        <Link to="/register" className="form-login-link-to-register">
-          Register →
-        </Link>
-      </div>
+
+      <Button className="button-form-login rounded-pill btn-lg" variant="primary" type="submit">
+        Submit
+      </Button>
     </Form>
   );
 }
