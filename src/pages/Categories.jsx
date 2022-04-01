@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import EditCategory from "../components/EditCategory";
 
 function Categories() {
   const [categories, setCategories] = useState(null);
@@ -66,7 +67,7 @@ function Categories() {
                     <td>{category.slug}</td>
                     <td>
                       <Button variant="secondary" onClick={() => handleShow(category)}>
-                        Not avaible
+                        Edit
                       </Button>{" "}
                     </td>
                     <td>
@@ -80,8 +81,7 @@ function Categories() {
           </table>
         </>
       ) : (
-        //<EditCategory setShow={setShow} category={category} getcategories={getCategories} />
-        <div>hola</div>
+        <EditCategory setShow={setShow} category={category} getCategories={getCategories} />
       )}
     </div>
   );

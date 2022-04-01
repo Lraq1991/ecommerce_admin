@@ -6,13 +6,11 @@ import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function EditProduct({ product, setShow, getProducts }) {
+function EditCategory({ category, setShow, getCategories }) {
   const user = useSelector((state) => state.user);
-  const [name, setName] = useState(product.name);
-  const [description, setDescription] = useState(product.description);
-  const [price, setPrice] = useState(product.price);
-  const [stock, setStock] = useState(product.stock);
-  const [slug, setSlug] = useState(product.slug);
+  const [name, setName] = useState(category.name);
+  const [description, setDescription] = useState(category.description);
+  const [slug, setSlug] = useState(category.slug);
   const navigate = useNavigate();
 
   const notify = () =>
@@ -30,24 +28,22 @@ function EditProduct({ product, setShow, getProducts }) {
     try {
       await axios({
         method: "PATCH",
-        url: `${process.env.REACT_APP_API_URL}/products/${product.slug}`,
+        url: `${process.env.REACT_APP_API_URL}/categories/${category.slug}`,
         headers: { Authorization: `Bearer ${user.token}` },
         data: {
           name: name,
           description: description,
-          price: price,
-          stock: stock,
           slug: slug,
         },
       });
       notify();
-      getProducts();
+      getCategories();
     } catch (err) {
       window.alert("Cant not make the update, try again later!");
     }
   };
   const handleBack = () => {
-    navigate("/products");
+    navigate("/categories");
     setShow(false);
   };
   return (
@@ -84,40 +80,15 @@ function EditProduct({ product, setShow, getProducts }) {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="price">
-              <Form.Label column sm="2">
-                Price
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  name="price"
-                  type="number"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Col>
-            </Form.Group>
+
             <Form.Group as={Row} className="mb-3" controlId="stock">
               <Form.Label column sm="2">
-                Stock
+                Slug
               </Form.Label>
               <Col sm="10">
                 <Form.Control
-                  name="stock"
-                  type="number"
-                  value={stock}
-                  onChange={(e) => setStock(e.target.value)}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="stock">
-              <Form.Label column sm="2">
-                Stock
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  name="stock"
-                  type="number"
+                  name="slug"
+                  type="text"
                   value={slug}
                   onChange={(e) => setSlug(e.target.value)}
                 />
@@ -154,4 +125,4 @@ function EditProduct({ product, setShow, getProducts }) {
   );
 }
 
-export default EditProduct;
+export default EditCategory;
