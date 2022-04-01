@@ -17,7 +17,12 @@ function Sidebar() {
           <span className="sb-section">Interface</span>
           <div className="sb-tag">Layout</div>
           <div className="sb-tag">Pages</div>
-          <Link to={"/products"}>Products</Link>
+          <div>
+            <Link to={"/products"}>Products</Link>
+          </div>
+          <div>
+            <Link to={"/categories"}>Categories</Link>
+          </div>
         </div>
         <div className="py-2">
           <span className="sb-section">Addons</span>
