@@ -6,15 +6,12 @@ import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 
-function NewProduct() {
+function CreateCategory() {
   const user = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     picture: "",
-    price: "",
-    stock: "",
-    isStandout: false,
     slug: "",
   });
 
@@ -38,28 +35,25 @@ function NewProduct() {
     try {
       await axios({
         method: "POST",
-        url: `${process.env.REACT_APP_API_URL}/products`,
+        url: `${process.env.REACT_APP_API_URL}/categories`,
         headers: { Authorization: `Bearer ${user.token}` },
         data: {
           name: formData.name,
           description: formData.description,
           picture: formData.picture,
-          price: formData.price,
-          stock: formData.stock,
-          isStandout: false,
           slug: formData.slug,
         },
       });
       notify();
     } catch (err) {
-      window.alert("Can not make this action, Try again later!");
+      window.alert("Cant not make this action, try again later!");
     }
   };
 
   return (
     <div className="px-4 mx-4">
       <Form className="p-4 m-4">
-        <Link to={"/products"} className=" btn btn-dark my-4">
+        <Link to={"/categories"} className=" btn btn-dark my-4">
           Back
         </Link>
         <Form.Group as={Row}>
@@ -83,22 +77,6 @@ function NewProduct() {
                   placeholder=""
                   onChange={handleChange}
                 />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="price">
-              <Form.Label column sm="2">
-                Price
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control name="price" type="number" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="stock">
-              <Form.Label column sm="2">
-                Stock
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control name="stock" type="number" placeholder="" onChange={handleChange} />
               </Col>
             </Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="slug">
@@ -140,4 +118,4 @@ function NewProduct() {
   );
 }
 
-export default NewProduct;
+export default CreateCategory;

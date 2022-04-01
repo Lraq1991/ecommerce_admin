@@ -38,10 +38,9 @@ function Categories() {
       {!show ? (
         <>
           <div className="btn btn-success my-2">
-            <Link to={"/"} className="text-decoration-none text-white">
+            <Link to={"/create-category"} className="text-decoration-none text-white">
               New Category
             </Link>
-            //Not Avaible yet...
           </div>
           <table className="table table-striped">
             <thead>

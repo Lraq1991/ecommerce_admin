@@ -12,6 +12,7 @@ import NewProduct from "./pages/NewProduct";
 import UsersTable from "./pages/UsersTable";
 import CreateUser from "./pages/CreateUser";
 import Categories from "./pages/Categories";
+import CreateCategory from "./pages/CreateCategory";
 
 function App() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function App() {
           <Route path="users" element={<UsersTable />} />
           <Route path="create-user" element={<CreateUser />} />
           <Route path="categories" element={<Categories />} />
+          <Route path="create-category" element={<CreateCategory />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
