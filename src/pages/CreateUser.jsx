@@ -24,7 +24,7 @@ function CreateUser() {
       const { data, status } = await axios({
         method: "POST",
         url: process.env.REACT_APP_API_URL + "/users",
-        // headers: { Authorization: `Bearer ${admin.token}` },
+        headers: { Authorization: `Bearer ${admin.token}` },
         data: {
           firstname: firstname,
           lastname: lastName,
