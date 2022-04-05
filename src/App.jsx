@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import NewProduct from "./pages/NewProduct";
 import UsersTable from "./pages/UsersTable";
+import OrdersTable from "./pages/OrdersTable";
 import CreateUser from "./pages/CreateUser";
 import Categories from "./pages/Categories";
 import CreateCategory from "./pages/CreateCategory";
@@ -35,6 +36,7 @@ function App() {
           <Route path="create-user" element={<CreateUser />} />
           <Route path="categories" element={<Categories />} />
           <Route path="create-category" element={<CreateCategory />} />
+          <Route path="orders" element={<OrdersTable />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

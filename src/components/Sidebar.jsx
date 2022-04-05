@@ -33,7 +33,7 @@ function Sidebar() {
             </Link>
           </div>
           <div className="sb-tag">
-            <Link to={"/categories"} className="text-reset">
+            <Link to={"/orders"} className="text-reset">
               Orders
             </Link>
           </div>
