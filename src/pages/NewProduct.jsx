@@ -43,7 +43,6 @@ function NewProduct() {
         data: {
           name: formData.name,
           description: formData.description,
-          picture: formData.picture,
           price: formData.price,
           stock: formData.stock,
           isStandout: false,
@@ -55,7 +54,23 @@ function NewProduct() {
       window.alert("Can not make this action, Try again later!");
     }
   };
+  const uploadFile = async (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    const form = new FormData(e.target);
+    try {
+      const request = await axios({
+        method: "POST",
+        url: `${process.env.REACT_APP_API_URL}/products/images`,
+        headers: { Authorization: `Bearer ${user.token}`, "Content-Type": "multipart/form-data" },
+        data: form,
+      });
 
+      console.log("message", request);
+    } catch {
+      alert("upload failed!");
+    }
+  };
   return (
     <div className="px-4 mx-4">
       <Form className="p-4 m-4">
@@ -106,17 +121,7 @@ function NewProduct() {
                 Slug
               </Form.Label>
               <Col sm="10">
-                <Form.Control name="name" type="text" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-          </Form.Group>
-          <Form.Group as={Col} className="ps-5 ms-5">
-            <Form.Group as={Row} className="mb-3" controlId="picture">
-              <Form.Label column sm="2">
-                Picture
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control type="text" placeholder="" onChange={handleChange} />
+                <Form.Control name="slug" type="text" placeholder="" />
               </Col>
             </Form.Group>
           </Form.Group>
@@ -125,6 +130,10 @@ function NewProduct() {
           Save
         </Button>
       </Form>
+      <form onSubmit={(e) => uploadFile(e)}>
+        <input name="image" type="file" />
+        <button>enviar</button>
+      </form>
       <ToastContainer
         position="top-right"
         autoClose={5000}
