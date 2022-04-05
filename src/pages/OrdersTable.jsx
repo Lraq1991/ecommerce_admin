@@ -2,32 +2,32 @@ import "./UsersTable.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MyTable from "../components/MyTable";
 import { useSelector } from "react-redux";
 import FormEditUser from "../components/FormEditUser";
-import { Button } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { format as formatDate } from "date-fns";
 
 function UsersTable() {
-  const [users, setUsers] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [id, setId] = useState("");
   const admin = useSelector((state) => state.user);
   const [userDeleted, setUserDeleted] = useState(false);
   const [showForm, setShowForm] = useState(true);
   useEffect(() => {
-    async function getUsers() {
+    async function getOrders() {
       try {
         const { data } = await axios({
           method: "GET",
           url: process.env.REACT_APP_API_URL + "/orders",
           headers: { Authorization: `Bearer ${admin.token}` },
         });
-        setUsers(data);
+        setOrders(data);
       } catch (error) {
         console.log(error);
       }
     }
 
-    getUsers();
+    getOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userDeleted, showForm]);
 
@@ -52,15 +52,51 @@ function UsersTable() {
                       </Link> */}
                     </div>
                     <div className="card-body">
-                      <MyTable
-                        users={users}
-                        setUserDeleted={setUserDeleted}
-                        userDeleted={userDeleted}
-                        setShowForm={setShowForm}
-                        showForm={showForm}
-                        admin={admin}
-                        setId={setId}
-                      />
+                      {orders && (
+                        <>
+                          <Table striped bordered hover>
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Products</th>
+                                <th>Payment Type</th>
+                                <th>Final Price</th>
+                                <th>Shipping Address</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {orders.map((order) => (
+                                <tr key={order.id}>
+                                  <td>{order.id}</td>
+                                  <td>{order.products}</td>
+                                  <td>{order.paymentType}</td>
+                                  <td>{order.finalPrice}</td>
+                                  <td>{order.shippingAddress}</td>
+                                  <td>{order.status}</td>
+                                  <td>{formatDate(new Date(order.createdAt), "MMMM-dd-Y")}</td>
+                                  <td className="d-flex justify-content-between">
+                                    {/* <Button
+                      variant="secondary"
+                      onClick={() => {
+                        setId(user.id);
+                        setShowForm(!showForm);
+                      }}
+                    >
+                      <i className="fa-solid fa-user-pen"></i>
+                    </Button>
+                    <Button variant="outline-danger" onClick={() => handleDelete(user)}>
+                      <i className="fa-solid fa-trash-can"></i>
+                    </Button> */}
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </Table>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
