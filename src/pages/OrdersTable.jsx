@@ -21,6 +21,7 @@ function UsersTable() {
           url: process.env.REACT_APP_API_URL + "/orders",
           headers: { Authorization: `Bearer ${admin.token}` },
         });
+        console.log(data);
         setOrders(data);
       } catch (error) {
         console.log(error);
@@ -64,33 +65,50 @@ function UsersTable() {
                                 <th>Shipping Address</th>
                                 <th>Status</th>
                                 <th>Created</th>
-                                <th>Actions</th>
+                                {/* <th>Actions</th> */}
                               </tr>
                             </thead>
                             <tbody>
                               {orders.map((order) => (
                                 <tr key={order.id}>
                                   <td>{order.id}</td>
-                                  <td>{order.products}</td>
+                                  <td>
+                                    <ul>
+                                      {order.products.map((product) => (
+                                        <li key={product.id}>
+                                          {product.name + " (" + product.quantity + ")"}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </td>
                                   <td>{order.paymentType}</td>
-                                  <td>{order.finalPrice}</td>
-                                  <td>{order.shippingAddress}</td>
+                                  <td>{order.total}</td>
+                                  {/* <td>
+                                    <ul>
+                                      {order.shippingAddress.map((data) => (
+                                        <li>hola</li>
+                                      ))}
+                                    </ul>
+                                  </td> */}
                                   <td>{order.status}</td>
                                   <td>{formatDate(new Date(order.createdAt), "MMMM-dd-Y")}</td>
-                                  <td className="d-flex justify-content-between">
-                                    {/* <Button
-                      variant="secondary"
-                      onClick={() => {
-                        setId(user.id);
-                        setShowForm(!showForm);
-                      }}
-                    >
-                      <i className="fa-solid fa-user-pen"></i>
-                    </Button>
-                    <Button variant="outline-danger" onClick={() => handleDelete(user)}>
-                      <i className="fa-solid fa-trash-can"></i>
-                    </Button> */}
-                                  </td>
+                                  {/* <td className="d-flex justify-content-between">
+                                    <Button
+                                      variant="secondary"
+                                      onClick={() => {
+                                        setId(user.id);
+                                        setShowForm(!showForm);
+                                      }}
+                                    >
+                                      <i className="fa-solid fa-user-pen"></i>
+                                    </Button>
+                                    <Button
+                                      variant="outline-danger"
+                                      onClick={() => handleDelete(user)}
+                                    >
+                                      <i className="fa-solid fa-trash-can"></i>
+                                    </Button>
+                                  </td> */}
                                 </tr>
                               ))}
                             </tbody>
