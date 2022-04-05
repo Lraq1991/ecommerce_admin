@@ -16,3 +16,7 @@
 .sb-tag:hover {
   color: #f8f9fa;
 }
+
+.text-reset {
+  text-decoration: none;
+}

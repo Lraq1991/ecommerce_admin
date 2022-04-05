@@ -9,29 +9,33 @@ function Sidebar() {
           <span className="sb-section">Core</span>
           <div>
             <span className="sb-tag">
-              <Link to={"/dashboard"}>Dashboard</Link>
+              <Link to={"/dashboard"} className="text-reset">
+                Dashboard
+              </Link>
             </span>
           </div>
         </div>
         <div className="py-2">
-          <span className="sb-section">Interface</span>
-          <div className="sb-tag">Layout</div>
-          <div className="sb-tag">Pages</div>
-          <div>
-            <Link to={"/products"}>Products</Link>
-          </div>
-          <div>
-            <Link to={"/categories"}>Categories</Link>
-          </div>
-        </div>
-        <div className="py-2">
-          <span className="sb-section">Addons</span>
-          <div className="sb-tag">Charts</div>
+          <span className="sb-section">Management</span>
           <div className="sb-tag">
-            <Link to={"/tables"}>Tables</Link>
+            <Link to={"/products"} className="text-reset">
+              Products
+            </Link>
           </div>
           <div className="sb-tag">
-            <Link to={"/users"}>Users</Link>
+            <Link to={"/users"} className="text-reset">
+              Users
+            </Link>
+          </div>
+          <div className="sb-tag">
+            <Link to={"/categories"} className="text-reset">
+              Categories
+            </Link>
+          </div>
+          <div className="sb-tag">
+            <Link to={"/categories"} className="text-reset">
+              Orders
+            </Link>
           </div>
         </div>
       </div>

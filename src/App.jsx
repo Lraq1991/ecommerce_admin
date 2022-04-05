@@ -1,6 +1,5 @@
 import "./App.css";
 import Home from "./pages/Home";
-import Tables from "./pages/Tables";
 import Login from "./pages/Login";
 import { Route, Routes } from "react-router";
 import { useNavigate } from "react-router";
@@ -30,7 +29,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="tables" element={<Tables />} />
           <Route path="products" element={<Products />} />
           <Route path="create-product" element={<NewProduct />} />
           <Route path="users" element={<UsersTable />} />
