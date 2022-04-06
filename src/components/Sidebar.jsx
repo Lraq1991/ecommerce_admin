@@ -9,7 +9,7 @@ function Sidebar() {
           <span className="sb-section">Core</span>
           <div>
             <span className="sb-tag">
-              <Link to={"/dashboard"} className="text-reset">
+              <Link to={"/"} className="text-reset">
                 Dashboard
               </Link>
             </span>

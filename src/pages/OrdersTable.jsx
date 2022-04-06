@@ -83,6 +83,9 @@ function UsersTable() {
                                   </td>
                                   <td>{order.paymentType}</td>
                                   <td>{order.total}</td>
+                                  <td>
+                                    {`${order.shippingAddress.city}/${order.shippingAddress.street_address}`}
+                                  </td>
                                   {/* <td>
                                     <ul>
                                       {order.shippingAddress.map((data) => (
