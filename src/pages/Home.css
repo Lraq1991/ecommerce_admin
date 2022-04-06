@@ -19,3 +19,13 @@
   content: "";
   margin-top: -10px;
 }
+.pages-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  height: 100%;
+}
+.home-container {
+  overflow-x: hidden;
+}

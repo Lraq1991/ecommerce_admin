@@ -12,6 +12,9 @@ function Home() {
             <div className="sb-hamburg"></div>
           </span>
         </div>
+        <div>
+          <h1 className="ps-4 ms-4 text-white">Garden Oddities</h1>
+        </div>
         <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
           <div className="input-group">
             <input
@@ -61,26 +64,26 @@ function Home() {
           </div>
         )}
 
-        <div className="col p-0">
+        <div className="col p-0 pages-content">
           <div id="layoutSidenav">
             <div id="layoutSidenav_content">
               <main className="px-4">
                 <Outlet />
               </main>
-              <footer className="py-4 bg-light mt-auto">
-                <div className="container-fluid px-4">
-                  <div className="d-flex align-items-center justify-content-between small">
-                    <div className="text-muted">Copyright &copy; Your Website 2022</div>
-                    <div>
-                      <span>Privacy Policy</span>
-                      &middot;
-                      <span>Terms &amp; Conditions</span>
-                    </div>
-                  </div>
-                </div>
-              </footer>
             </div>
           </div>
+          <footer className="py-4 bg-light mt-auto footer">
+            <div className="container-fluid px-4">
+              <div className="d-flex align-items-center justify-content-between small">
+                <div className="text-muted">Copyright &copy; Your Website 2022</div>
+                <div>
+                  <span>Privacy Policy</span>
+                  &middot;
+                  <span>Terms &amp; Conditions</span>
+                </div>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
     </div>
