@@ -6,29 +6,16 @@ function Home() {
   const [show, setShow] = useState(null);
   return (
     <div className="container home-container p-0 m-0 mw-100">
-      <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+      <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark nav-dist">
         <div className="pt-4 ps-4 sb-btn" onClick={() => setShow((prev) => !prev)}>
           <span className="navbar-brand ps-3">
             <div className="sb-hamburg"></div>
           </span>
         </div>
         <div>
-          <h1 className="ps-4 ms-4 text-white">Garden Oddities</h1>
+          <h1 className="ps-4 text-white">Garden Oddities</h1>
         </div>
-        <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-          <div className="input-group">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="Search for..."
-              aria-label="Search for..."
-              aria-describedby="btnNavbarSearch"
-            />
-            <button className="btn btn-primary" id="btnNavbarSearch" type="button">
-              <i className="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
+
         <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
           <li className="nav-item dropdown">
             <span

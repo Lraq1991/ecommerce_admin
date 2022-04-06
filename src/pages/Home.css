@@ -29,3 +29,8 @@
 .home-container {
   overflow-x: hidden;
 }
+.nav-dist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
