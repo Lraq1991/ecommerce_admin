@@ -11,12 +11,14 @@ function NewProduct() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    picture: "",
     price: "",
+    picture: "",
     stock: "",
     isStandout: false,
     slug: "",
   });
+  const [image, setImage] = useState("");
+  const [loaded, setLoaded] = useState(null);
 
   const notify = () =>
     toast.success("Succesfully created!", {
@@ -35,48 +37,71 @@ function NewProduct() {
     setFormData({ ...formData, [key]: value });
   };
   const handleClick = async () => {
-    try {
-      await axios({
-        method: "POST",
-        url: `${process.env.REACT_APP_API_URL}/products`,
-        headers: { Authorization: `Bearer ${user.token}` },
-        data: {
-          name: formData.name,
-          description: formData.description,
-          price: formData.price,
-          stock: formData.stock,
-          isStandout: false,
-          slug: formData.slug,
-        },
-      });
-      notify();
-    } catch (err) {
-      window.alert("Can not make this action, Try again later!");
+    if (loaded) {
+      try {
+        await axios({
+          method: "POST",
+          url: `${process.env.REACT_APP_API_URL}/products`,
+          headers: { Authorization: `Bearer ${user.token}` },
+          data: {
+            name: formData.name,
+            description: formData.description,
+            price: formData.price,
+            picture: image,
+            stock: formData.stock,
+            isStandout: false,
+            slug: formData.slug,
+          },
+        });
+        notify();
+      } catch (err) {
+        console.log("formData", formData);
+        alert(err);
+      }
+    } else {
+      alert("Must load an image before send this request");
     }
   };
   const uploadFile = async (e) => {
     e.preventDefault();
-    console.log(e.target);
-    const form = new FormData(e.target);
-    try {
-      const request = await axios({
-        method: "POST",
-        url: `${process.env.REACT_APP_API_URL}/products/images`,
-        headers: { Authorization: `Bearer ${user.token}`, "Content-Type": "multipart/form-data" },
-        data: form,
-      });
 
-      console.log("message", request);
-    } catch {
-      alert("upload failed!");
+    const form = new FormData(e.target);
+    if (!loaded) {
+      try {
+        const { data } = await axios({
+          method: "POST",
+          url: `${process.env.REACT_APP_API_URL}/products/images`,
+          headers: { Authorization: `Bearer ${user.token}`, "Content-Type": "multipart/form-data" },
+          data: form,
+        });
+        setImage(data.fileName);
+        setLoaded(true);
+      } catch {
+        setLoaded(null);
+        alert("upload failed!");
+      }
+    } else {
+      const response = await axios({
+        method: "DELETE",
+        url: `${process.env.REACT_APP_API_URL}/products/${image}`,
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      setImage("");
+      setLoaded(null);
     }
   };
   return (
     <div className="px-4 mx-4">
+      <Link to={"/products"} className=" btn btn-dark my-4">
+        Back
+      </Link>
+      <form className="px-4 mx-4" onSubmit={(e) => uploadFile(e)}>
+        <input className="form-control" name="image" type="file" />
+        <button className="btn btn-primary mt-3">
+          {!loaded ? "Load picture" : "Change picture"}
+        </button>
+      </form>
       <Form className="p-4 m-4">
-        <Link to={"/products"} className=" btn btn-dark my-4">
-          Back
-        </Link>
         <Form.Group as={Row}>
           <Form.Group as={Col}>
             <Form.Group as={Row} className="mb-3" controlId="name">
@@ -121,7 +146,7 @@ function NewProduct() {
                 Slug
               </Form.Label>
               <Col sm="10">
-                <Form.Control name="slug" type="text" placeholder="" />
+                <Form.Control name="slug" type="text" placeholder="" onChange={handleChange} />
               </Col>
             </Form.Group>
           </Form.Group>
@@ -130,10 +155,6 @@ function NewProduct() {
           Save
         </Button>
       </Form>
-      <form onSubmit={(e) => uploadFile(e)}>
-        <input name="image" type="file" />
-        <button>enviar</button>
-      </form>
       <ToastContainer
         position="top-right"
         autoClose={5000}
