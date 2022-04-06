@@ -47,10 +47,6 @@ function UsersTable() {
                       <div className="data-table-user">
                         <i className="fas fa-table me-1"></i>
                       </div>
-
-                      {/* <Link to={"/create-user"} className="btn btn-outline-primary">
-                        Create User
-                      </Link> */}
                     </div>
                     <div className="card-body">
                       {orders && (
@@ -65,7 +61,6 @@ function UsersTable() {
                                 <th>Shipping Address</th>
                                 <th>Status</th>
                                 <th>Created</th>
-                                {/* <th>Actions</th> */}
                               </tr>
                             </thead>
                             <tbody>
@@ -86,32 +81,9 @@ function UsersTable() {
                                   <td>
                                     {`${order.shippingAddress.city}/${order.shippingAddress.street_address}`}
                                   </td>
-                                  {/* <td>
-                                    <ul>
-                                      {order.shippingAddress.map((data) => (
-                                        <li>hola</li>
-                                      ))}
-                                    </ul>
-                                  </td> */}
+
                                   <td>{order.status}</td>
                                   <td>{formatDate(new Date(order.createdAt), "MMMM-dd-Y")}</td>
-                                  {/* <td className="d-flex justify-content-between">
-                                    <Button
-                                      variant="secondary"
-                                      onClick={() => {
-                                        setId(user.id);
-                                        setShowForm(!showForm);
-                                      }}
-                                    >
-                                      <i className="fa-solid fa-user-pen"></i>
-                                    </Button>
-                                    <Button
-                                      variant="outline-danger"
-                                      onClick={() => handleDelete(user)}
-                                    >
-                                      <i className="fa-solid fa-trash-can"></i>
-                                    </Button>
-                                  </td> */}
                                 </tr>
                               ))}
                             </tbody>
