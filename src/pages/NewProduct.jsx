@@ -81,7 +81,7 @@ function NewProduct() {
         alert("upload failed!");
       }
     } else {
-      const response = await axios({
+      await axios({
         method: "DELETE",
         url: `${process.env.REACT_APP_API_URL}/products/${image}`,
         headers: { Authorization: `Bearer ${user.token}` },

@@ -1,37 +1,51 @@
 import "./UsersTable.css";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import FormEditUser from "../components/FormEditUser";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Form } from "react-bootstrap";
 import { format as formatDate } from "date-fns";
 
 function UsersTable() {
   const [orders, setOrders] = useState([]);
   const [id, setId] = useState("");
   const admin = useSelector((state) => state.user);
-  const [userDeleted, setUserDeleted] = useState(false);
   const [showForm, setShowForm] = useState(true);
-  useEffect(() => {
-    async function getOrders() {
-      try {
-        const { data } = await axios({
-          method: "GET",
-          url: process.env.REACT_APP_API_URL + "/orders",
-          headers: { Authorization: `Bearer ${admin.token}` },
-        });
-        console.log(data);
-        setOrders(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+  const [statusEdit, setStatusEdit] = useState(null);
+  const [newStatus, setNewStatus] = useState(null);
 
+  const getOrders = async () => {
+    try {
+      const { data } = await axios({
+        method: "GET",
+        url: process.env.REACT_APP_API_URL + "/orders",
+        headers: { Authorization: `Bearer ${admin.token}` },
+      });
+      setOrders(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
     getOrders();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userDeleted, showForm]);
+  }, []);
 
+  const handleChange = (e) => {
+    setNewStatus(e.target.value);
+  };
+  const handleClick = async (order) => {
+    const orderId = order.id;
+    await axios({
+      method: "PATCH",
+      url: `${process.env.REACT_APP_API_URL}/orders/${orderId}`,
+      headers: { Authorization: `Bearer ${admin.token}` },
+      data: {
+        status: newStatus,
+      },
+    });
+    getOrders();
+  };
   return (
     <>
       {showForm ? (
@@ -60,6 +74,7 @@ function UsersTable() {
                                 <th>Final Price</th>
                                 <th>Shipping Address</th>
                                 <th>Status</th>
+                                {statusEdit && <th>Status Edit</th>}
                                 <th>Created</th>
                               </tr>
                             </thead>
@@ -82,7 +97,29 @@ function UsersTable() {
                                     {`${order.shippingAddress.city}/${order.shippingAddress.street_address}`}
                                   </td>
 
-                                  <td>{order.status}</td>
+                                  <td
+                                    className="order-status"
+                                    onClick={() => setStatusEdit((prev) => !prev)}
+                                  >
+                                    {order.status}
+                                  </td>
+                                  {statusEdit && (
+                                    <td>
+                                      <Form.Control
+                                        as="select"
+                                        id="cars"
+                                        name="cars"
+                                        onChange={(e) => handleChange(e)}
+                                      >
+                                        <option value="Pending">Pending</option>
+                                        <option value="Failed">Failed</option>
+                                        <option value="Processing">Processing</option>
+                                        <option value="Completed">Completed</option>
+                                      </Form.Control>
+                                      <Button onClick={() => handleClick(order)}>Change</Button>
+                                    </td>
+                                  )}
+
                                   <td>{formatDate(new Date(order.createdAt), "MMMM-dd-Y")}</td>
                                 </tr>
                               ))}
