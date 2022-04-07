@@ -59,7 +59,6 @@ function Categories() {
                         <table className="table table-striped">
                           <thead>
                             <tr>
-                              <th scope="col">Picture</th>
                               <th scope="col">Name</th>
                               <th scope="col">Description</th>
                               <th scope="col">Slug</th>
@@ -70,14 +69,6 @@ function Categories() {
                             {categories &&
                               categories.map((category) => (
                                 <tr key={category.id}>
-                                  <th scope="row">
-                                    <img
-                                      src={category.picture}
-                                      alt={category.name}
-                                      width={100}
-                                      height={100}
-                                    />
-                                  </th>
                                   <td>{category.name}</td>
                                   <td>{category.description}</td>
                                   <td>{category.slug}</td>
