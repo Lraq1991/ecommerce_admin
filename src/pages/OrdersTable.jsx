@@ -22,6 +22,7 @@ function UsersTable() {
         headers: { Authorization: `Bearer ${admin.token}` },
       });
       setOrders(data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }

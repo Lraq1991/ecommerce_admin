@@ -2,7 +2,7 @@ import "./UsersTable.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import MyTable from "../components/MyTable";
+import UserTable from "../components/UserTable";
 import { useSelector } from "react-redux";
 import FormEditUser from "../components/FormEditUser";
 import { Button } from "react-bootstrap";
@@ -53,7 +53,7 @@ function UsersTable() {
                       </Link>
                     </div>
                     <div className="card-body">
-                      <MyTable
+                      <UserTable
                         users={users}
                         setUserDeleted={setUserDeleted}
                         userDeleted={userDeleted}

@@ -1,11 +1,19 @@
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Modal, ModalBody } from "react-bootstrap";
 import { format as formatDate } from "date-fns";
-import "./MyTable.css";
+import "./UserTable.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 function MyTable({ users, userDeleted, setUserDeleted, setShowForm, showForm, admin, setId }) {
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const handleToggleConfirmDelete = () => setShowConfirmDelete(!showConfirmDelete);
+  const [userToDelete, setUserToDelete] = useState({});
+  const handleToDelete = async (user) => {
+    setUserToDelete(user);
+    setShowConfirmDelete(!showConfirmDelete);
+  };
   const handleDelete = async (user) => {
     try {
       const { data, status } = await axios({
@@ -13,7 +21,6 @@ function MyTable({ users, userDeleted, setUserDeleted, setShowForm, showForm, ad
         url: process.env.REACT_APP_API_URL + "/users/" + user.id,
         headers: { Authorization: `Bearer ${admin.token}` },
       });
-      setUserDeleted(!userDeleted);
       if (status === 200) {
         toast.success(data.message, {
           position: "top-right",
@@ -25,6 +32,8 @@ function MyTable({ users, userDeleted, setUserDeleted, setShowForm, showForm, ad
           progress: undefined,
         });
       }
+      setShowConfirmDelete(!showConfirmDelete);
+      setUserDeleted(!userDeleted);
     } catch (error) {
       if (error) {
         toast.warning("This action is locked", {
@@ -77,7 +86,7 @@ function MyTable({ users, userDeleted, setUserDeleted, setShowForm, showForm, ad
                     >
                       <i className="fa-solid fa-user-pen"></i>
                     </Button>
-                    <Button variant="outline-danger" onClick={() => handleDelete(user)}>
+                    <Button variant="outline-danger" onClick={() => handleToDelete(user)}>
                       <i className="fa-solid fa-trash-can"></i>
                     </Button>
                   </td>
@@ -85,6 +94,31 @@ function MyTable({ users, userDeleted, setUserDeleted, setShowForm, showForm, ad
               ))}
             </tbody>
           </Table>
+          <Modal show={showConfirmDelete} onHide={handleToggleConfirmDelete}>
+            <Modal.Header closeButton>
+              <Modal.Title>Are you sure you want delete this person?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>
+                <span className="user-table-info-modal-delete">Nombre:</span>{" "}
+                {userToDelete.firstname} {userToDelete.lastname}
+              </p>
+              <p>
+                <span className="user-table-info-modal-delete">City:</span> {userToDelete.city}
+              </p>
+              <p>
+                <span className="user-table-info-modal-delete">Email:</span> {userToDelete.email}
+              </p>
+            </Modal.Body>
+            <Modal.Footer className="justify-content-center">
+              <Button variant="secondary" onClick={handleToggleConfirmDelete}>
+                No.
+              </Button>
+              <Button variant="primary" onClick={() => handleDelete(userToDelete)}>
+                Yes, i'm sure.
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </>
       )}
     </>

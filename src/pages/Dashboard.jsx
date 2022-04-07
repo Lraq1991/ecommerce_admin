@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import ChartEarningsPerMonth from "../components/ChartEarningsPerMonth";
+import ChartSalesPerMonth from "../components/ChartSalesPerMonth";
 
 function Dashboard() {
+  const admin = useSelector((state) => state.user);
   return (
     <div>
       <h1 className="mt-4">Dashboard</h1>
@@ -58,10 +62,10 @@ function Dashboard() {
           <div className="card mb-4">
             <div className="card-header">
               <i className="fas fa-chart-area me-1"></i>
-              Area Chart Example
+              Sales Chart
             </div>
             <div className="card-body">
-              <canvas id="myAreaChart" width="100%" height="40"></canvas>
+              <ChartSalesPerMonth admin={admin} />
             </div>
           </div>
         </div>
@@ -69,10 +73,10 @@ function Dashboard() {
           <div className="card mb-4">
             <div className="card-header">
               <i className="fas fa-chart-bar me-1"></i>
-              Bar Chart Example
+              Earnings Chart
             </div>
             <div className="card-body">
-              <canvas id="myBarChart" width="100%" height="40"></canvas>
+              <ChartEarningsPerMonth admin={admin} />
             </div>
           </div>
         </div>
