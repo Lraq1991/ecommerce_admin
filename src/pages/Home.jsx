@@ -1,9 +1,18 @@
 import "./Home.css";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import userActions from "../redux/userActions";
+
 function Home() {
   const [show, setShow] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(userActions.userLogout);
+  };
   return (
     <div className="container home-container p-0 m-0 mw-100">
       <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark nav-dist">
@@ -16,33 +25,15 @@ function Home() {
           <h1 className="ps-4 text-white">Garden Oddities</h1>
         </div>
 
-        <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-          <li className="nav-item dropdown">
-            <span
-              className="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i className="fas fa-user fa-fw"></i>
-            </span>
-            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li>
-                <span className="dropdown-item">Settings</span>
-              </li>
-              <li>
-                <span className="dropdown-item">Activity Log</span>
-              </li>
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-              <li>
-                <span className="dropdown-item">Logout</span>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <Dropdown>
+          <Dropdown.Toggle className="text-secondary" variant="transparent">
+            <i className="fas fa-user fa-fw"></i>
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => handleLogout()}>Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </nav>
       <div className="row">
         {show && (

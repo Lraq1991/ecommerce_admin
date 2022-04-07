@@ -36,6 +36,8 @@ function UsersTable() {
   };
   const handleClick = async (order) => {
     const orderId = order.id;
+    console.log(newStatus);
+    if (!newStatus) return alert("most select an option");
     await axios({
       method: "PATCH",
       url: `${process.env.REACT_APP_API_URL}/orders/${orderId}`,
@@ -60,6 +62,7 @@ function UsersTable() {
                     <div className="card-header d-flex aling-items-center justify-content-between">
                       <div className="data-table-user">
                         <i className="fas fa-table me-1"></i>
+                        Data Table Orders
                       </div>
                     </div>
                     <div className="card-body">
@@ -116,7 +119,12 @@ function UsersTable() {
                                         <option value="Processing">Processing</option>
                                         <option value="Completed">Completed</option>
                                       </Form.Control>
-                                      <Button onClick={() => handleClick(order)}>Change</Button>
+                                      <Button
+                                        variant="outline-primary"
+                                        onClick={() => handleClick(order)}
+                                      >
+                                        Change
+                                      </Button>
                                     </td>
                                   )}
 

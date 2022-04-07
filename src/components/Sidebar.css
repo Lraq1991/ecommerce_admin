@@ -5,15 +5,16 @@
   min-height: 100vh;
   height: 100%;
 }
-.sb-section {
-  font-size: larger;
-  font-weight: bolder;
+.sb-section,
+.sb-dash {
+  font-size: x-large;
 }
 .sb-tag {
-  font-size: x-large;
+  font-size: large;
   cursor: pointer;
 }
-.sb-tag:hover {
+.sb-tag:hover,
+.sb-dash:hover {
   color: #f8f9fa;
 }
 

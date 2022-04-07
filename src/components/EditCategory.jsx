@@ -49,9 +49,6 @@ function EditCategory({ category, setShow, getCategories }) {
   return (
     <div className="px-4 mx-4">
       <Form className="p-4 m-4">
-        <div className=" btn btn-dark my-4" onClick={handleBack}>
-          Back
-        </div>
         <Form.Group as={Row}>
           <Form.Group as={Col}>
             <Form.Group as={Row} className="mb-3" controlId="name">
@@ -95,19 +92,12 @@ function EditCategory({ category, setShow, getCategories }) {
               </Col>
             </Form.Group>
           </Form.Group>
-          <Form.Group as={Col} className="ps-5 ms-5">
-            <Form.Group as={Row} className="mb-3" controlId="picture">
-              <Form.Label column sm="2">
-                Picture
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control type="text" />
-              </Col>
-            </Form.Group>
-          </Form.Group>
         </Form.Group>
-        <Button variant="primary" onClick={() => handleClick()}>
-          Save
+        <Button variant="secondary me-4" onClick={handleBack}>
+          Cancel
+        </Button>
+        <Button variant="success m-4" onClick={() => handleClick()}>
+          Save Changes
         </Button>
       </Form>
       <ToastContainer

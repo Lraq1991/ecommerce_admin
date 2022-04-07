@@ -92,69 +92,109 @@ function NewProduct() {
   };
   return (
     <div className="px-4 mx-4">
-      <Link to={"/products"} className=" btn btn-dark my-4">
-        Back
-      </Link>
-      <form className="px-4 mx-4" onSubmit={(e) => uploadFile(e)}>
-        <input className="form-control" name="image" type="file" />
-        <button className="btn btn-primary mt-3">
-          {!loaded ? "Load picture" : "Change picture"}
-        </button>
-      </form>
-      <Form className="p-4 m-4">
-        <Form.Group as={Row}>
-          <Form.Group as={Col}>
-            <Form.Group as={Row} className="mb-3" controlId="name">
-              <Form.Label column sm="2">
-                Name
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control name="name" type="text" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="description">
-              <Form.Label column sm="2">
-                Description
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control
-                  type="text"
-                  name="description"
-                  placeholder=""
-                  onChange={handleChange}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="price">
-              <Form.Label column sm="2">
-                Price
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control name="price" type="number" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="stock">
-              <Form.Label column sm="2">
-                Stock
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control name="stock" type="number" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="slug">
-              <Form.Label column sm="2">
-                Slug
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control name="slug" type="text" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-          </Form.Group>
-        </Form.Group>
-        <Button variant="primary" onClick={() => handleClick()}>
-          Save
-        </Button>
-      </Form>
+      <div className="col">
+        <div id="layoutSidenav">
+          <div id="layoutSidenav_content">
+            <main>
+              <div className="container-fluid px-4">
+                <h1 className="mt-4">Products</h1>
+                <div className="card mb-4">
+                  <div className="card-header">
+                    <i className="fas fa-table me-1"></i>
+                    Create Product
+                  </div>
+                  <div className="card-body">
+                    <form className="px-4 mx-4" onSubmit={(e) => uploadFile(e)}>
+                      <input className="form-control" name="image" type="file" />
+                      <button className="btn btn-primary mt-3">
+                        {!loaded ? "Load picture" : "Change picture"}
+                      </button>
+                    </form>
+                    <Form className="p-4 m-4">
+                      <Form.Group as={Row}>
+                        <Form.Group as={Col}>
+                          <Form.Group as={Row} className="mb-3" controlId="name">
+                            <Form.Label column sm="2">
+                              Name
+                            </Form.Label>
+                            <Col sm="10">
+                              <Form.Control
+                                name="name"
+                                type="text"
+                                placeholder=""
+                                onChange={handleChange}
+                              />
+                            </Col>
+                          </Form.Group>
+                          <Form.Group as={Row} className="mb-3" controlId="description">
+                            <Form.Label column sm="2">
+                              Description
+                            </Form.Label>
+                            <Col sm="10">
+                              <Form.Control
+                                type="text"
+                                name="description"
+                                placeholder=""
+                                onChange={handleChange}
+                              />
+                            </Col>
+                          </Form.Group>
+                          <Form.Group as={Row} className="mb-3" controlId="price">
+                            <Form.Label column sm="2">
+                              Price
+                            </Form.Label>
+                            <Col sm="10">
+                              <Form.Control
+                                name="price"
+                                type="number"
+                                placeholder=""
+                                onChange={handleChange}
+                              />
+                            </Col>
+                          </Form.Group>
+                          <Form.Group as={Row} className="mb-3" controlId="stock">
+                            <Form.Label column sm="2">
+                              Stock
+                            </Form.Label>
+                            <Col sm="10">
+                              <Form.Control
+                                name="stock"
+                                type="number"
+                                placeholder=""
+                                onChange={handleChange}
+                              />
+                            </Col>
+                          </Form.Group>
+                          <Form.Group as={Row} className="mb-3" controlId="slug">
+                            <Form.Label column sm="2">
+                              Slug
+                            </Form.Label>
+                            <Col sm="10">
+                              <Form.Control
+                                name="slug"
+                                type="text"
+                                placeholder=""
+                                onChange={handleChange}
+                              />
+                            </Col>
+                          </Form.Group>
+                        </Form.Group>
+                      </Form.Group>
+                      <Link to={"/products"} className="btn btn-secondary my-4 me-4">
+                        Back
+                      </Link>
+                      <Button variant="success m-4" onClick={() => handleClick()}>
+                        Save
+                      </Button>
+                    </Form>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+
       <ToastContainer
         position="top-right"
         autoClose={5000}

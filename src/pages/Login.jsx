@@ -18,9 +18,6 @@ function Login() {
   }, [user, navigate]);
   return (
     <Container className="p-0 m-0 mw-100 height-100-percent-page">
-      {/* <Row className="w-100 m-0 px-5 py-3 ">
-        <NavBar />
-      </Row> */}
       <div className="login-main-page">
         <FormLogin />
       </div>
