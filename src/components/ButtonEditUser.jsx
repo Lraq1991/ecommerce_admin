@@ -92,7 +92,6 @@ function ButtonEditUser({ user }) {
                 id="isadmin"
                 onChange={(ev) => {
                   setIsAdmin(!isAdmin);
-                  console.log(isAdmin);
                 }}
               />
             </Form.Label>

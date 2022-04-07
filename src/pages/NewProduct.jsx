@@ -55,7 +55,6 @@ function NewProduct() {
         });
         notify();
       } catch (err) {
-        console.log("formData", formData);
         alert(err);
       }
     } else {
@@ -76,9 +75,26 @@ function NewProduct() {
         });
         setImage(data.fileName);
         setLoaded(true);
-      } catch {
+        toast.success("Image saved!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } catch (error) {
         setLoaded(null);
-        alert("upload failed!");
+        toast.warning(error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } else {
       await axios({

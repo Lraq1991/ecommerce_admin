@@ -22,7 +22,6 @@ function UsersTable() {
         headers: { Authorization: `Bearer ${admin.token}` },
       });
       setOrders(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +36,6 @@ function UsersTable() {
   };
   const handleClick = async (order) => {
     const orderId = order.id;
-    console.log(newStatus);
     if (!newStatus) return alert("most select an option");
     await axios({
       method: "PATCH",

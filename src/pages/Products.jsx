@@ -20,7 +20,6 @@ function Products() {
     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/products`);
 
     setProducts(data);
-    console.log(data, process.env.REACT_APP_IMAGES_URL);
   };
 
   const handleRemove = async (item) => {
