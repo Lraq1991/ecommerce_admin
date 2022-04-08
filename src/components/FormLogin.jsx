@@ -57,8 +57,9 @@ function FormLogin() {
       </Form.Group>
 
       <div>
-        <p className="text-muted">Email: admin@admin.com </p>
-        <p className="text-muted">Password: admin </p>
+        <h5>Datos de prueba</h5>
+        <p className="text-muted fs-5">Email: admin@admin.com </p>
+        <p className="text-muted fs-5">Password: admin </p>
       </div>
       <Button className="button-form-login rounded-pill btn-lg" variant="primary" type="submit">
         Submit
