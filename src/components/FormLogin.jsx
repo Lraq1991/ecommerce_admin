@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import userActions from "../redux/userActions";
+import TryDemo from "./TryDemo";
 
 function FormLogin() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function FormLogin() {
       <Button className="button-form-login rounded-pill btn-lg" variant="primary" type="submit">
         Submit
       </Button>
+      <TryDemo />
     </Form>
   );
 }
