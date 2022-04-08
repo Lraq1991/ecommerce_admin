@@ -41,7 +41,12 @@ function FormLogin() {
           }}
           required
         />
-        <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+        <Form.Text className="text-muted">
+          <strong>Email:</strong> admin@admin.com{" "}
+        </Form.Text>
+        <Form.Text className="text-muted">
+          <strong>Password:</strong> admin{" "}
+        </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
