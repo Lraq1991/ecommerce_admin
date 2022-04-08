@@ -88,16 +88,6 @@ function CreateCategory() {
               </Col>
             </Form.Group>
           </Form.Group>
-          <Form.Group as={Col} className="ps-5 ms-5">
-            <Form.Group as={Row} className="mb-3" controlId="picture">
-              <Form.Label column sm="2">
-                Picture
-              </Form.Label>
-              <Col sm="10">
-                <Form.Control type="text" placeholder="" onChange={handleChange} />
-              </Col>
-            </Form.Group>
-          </Form.Group>
         </Form.Group>
         <Button variant="primary" onClick={() => handleClick()}>
           Save
