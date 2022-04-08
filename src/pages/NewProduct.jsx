@@ -1,6 +1,6 @@
 import { Button, Form, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -67,14 +67,16 @@ function NewProduct() {
     const form = new FormData(e.target);
     if (!loaded) {
       try {
-        const { data } = await axios({
+        const { data, status } = await axios({
           method: "POST",
           url: `${process.env.REACT_APP_API_URL}/products/images`,
           headers: { Authorization: `Bearer ${user.token}`, "Content-Type": "multipart/form-data" },
           data: form,
         });
+
         setImage(data.fileName);
-        setLoaded(true);
+        if (status === 200) setLoaded(data);
+
         toast.success("Image saved!", {
           position: "top-right",
           autoClose: 5000,
@@ -97,13 +99,22 @@ function NewProduct() {
         });
       }
     } else {
-      await axios({
+      const { status } = await axios({
         method: "DELETE",
         url: `${process.env.REACT_APP_API_URL}/products/${image}`,
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setImage("");
-      setLoaded(null);
+      if (status === 200) setLoaded(null);
+      toast.success("Now you can change this image", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   return (
@@ -123,7 +134,7 @@ function NewProduct() {
                     <form className="px-4 mx-4" onSubmit={(e) => uploadFile(e)}>
                       <input className="form-control" name="image" type="file" />
                       <button className="btn btn-primary mt-3">
-                        {!loaded ? "Load picture" : "Change picture"}
+                        {loaded ? "Change picture" : "Load picture"}
                       </button>
                     </form>
                     <Form className="p-4 m-4">
@@ -210,18 +221,6 @@ function NewProduct() {
           </div>
         </div>
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 }
