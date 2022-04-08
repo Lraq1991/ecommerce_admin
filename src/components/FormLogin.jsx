@@ -41,9 +41,6 @@ function FormLogin() {
           }}
           required
         />
-        <Form.Text className="text-muted">
-          <strong>Email:</strong> admin@admin.com{" "}
-        </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -57,11 +54,12 @@ function FormLogin() {
           }}
           required
         />
-        <Form.Text className="text-muted">
-          <strong>Password:</strong> admin{" "}
-        </Form.Text>
       </Form.Group>
 
+      <div>
+        <p className="text-muted">Email: admin@admin.com </p>
+        <p className="text-muted">Password: admin </p>
+      </div>
       <Button className="button-form-login rounded-pill btn-lg" variant="primary" type="submit">
         Submit
       </Button>
